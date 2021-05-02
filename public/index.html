@@ -11,8 +11,7 @@
 
 const urlParams = new URLSearchParams(window.location.search);
 let orderConfig = urlParams.get('orderConfig');
-
-
+let variety = urlParams.get('variety');
 
 // Only run your custom code once KiteConnect has fully initialised.
 // Use KiteConnect.ready() to achieve this.
@@ -26,18 +25,25 @@ KiteConnect.ready(function() {
         let itemArr = item.split(":");
         return {
             tradingsymbol:itemArr[0],
-            quantity:itemArr[1]
+            quantity:itemArr[1],
+            price:itemArr[2]
         }
     })
 
     for(let item of orderConfig){
-        kite.add({
+        let order = {
             "exchange": "NSE",
             "tradingsymbol": item.tradingsymbol,
             "quantity": Number(item.quantity),
             "transaction_type": "BUY",
-            "order_type": "MARKET"
-        });
+            "order_type": "MARKET",
+            "variety":variety||'regular'
+        }
+        if(item.price){
+            order.order_type = 'LIMIT';
+            order.price = Number(item.price)
+        }
+        kite.add(order);
     }
     
     

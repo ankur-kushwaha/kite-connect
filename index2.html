@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" id="basket-form" action="https://kite.zerodha.com/connect/basket">
+        <input type="hidden" name="api_key" value="l4j1wlgvp1etnibc" />
+        <input type="hidden" id="basket" name="data" value="" />
+      </form>
+
+
+      
+      <script>
+          let your_basket = [{
+  "variety": "regular",
+  "tradingsymbol": "INFY",
+  "exchange": "NSE",
+  "transaction_type": "BUY",
+  "order_type": "MARKET",
+  "quantity": 10,
+  "readonly": false
+}, {
+  "variety": "regular",
+  "tradingsymbol": "NIFTY15DECFUT",
+  "exchange": "NFO",
+  "transaction_type": "SELL",
+  "order_type": "LIMIT",
+  "price": 7845,
+  "quantity": 1,
+  "readonly": false
+},
+{
+  "variety": "bo",
+  "tradingsymbol": "RELIANCE",
+  "exchange": "NSE",
+  "transaction_type": "BUY",
+  "order_type": "LIMIT",
+  "product": "MIS",
+  "price": 915.15,
+  "quantity": 1,
+  "stoploss": 5,
+  "squareoff": 7,
+  "trailing_stoploss": 1.5,
+  "readonly": true
+}]
+        document.getElementById("basket").value = your_basket;
+        document.getElementById("basket-form").submit();
+      </script>
+</body>
+</html>
